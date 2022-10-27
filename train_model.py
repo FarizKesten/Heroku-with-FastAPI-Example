@@ -1,11 +1,12 @@
 # Script to train machine learning model.
 
 #%%
-from sklearn.model_selection import train_test_split
 # Add the necessary imports for the starter code.
+from sklearn.model_selection import train_test_split
 from ml.data import process_data
 import pandas as pd
-import pickle
+import joblib
+
 # Add code to load in the data.
 #%%
 data = pd.read_csv("data/census_clean.csv",skipinitialspace=True)
@@ -37,8 +38,7 @@ X_test, y_test, encoder, lb = process_data(
 )
 #%%
 # Train and save a model.
-with open("model/lb", "wb") as f:
-    pickle.dump(lb, f)
+joblib.dump(lb, "model/lb.joblib")
+joblib.dump(encoder, "model/encoder.joblib")
 
-with open("model/encoder", "wb") as f:
-    pickle.dump(encoder, f)
+# %%
