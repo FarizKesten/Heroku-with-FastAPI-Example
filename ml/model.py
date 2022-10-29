@@ -57,7 +57,7 @@ def inference(model, X):
 
     Inputs
     ------
-    model : ???
+    model : RandomForest Model
         Trained machine learning model.
     X : np.array
         Data used for prediction.
@@ -67,3 +67,4 @@ def inference(model, X):
         Predictions from the model.
     """
     return model.predict(X)
+

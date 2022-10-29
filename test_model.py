@@ -3,8 +3,9 @@ import pandas as pd
 import joblib
 
 from sklearn.model_selection import train_test_split
-from ml.data import process_data
-from ml.model import inference, compute_model_metrics
+from ml.model import compute_model_metrics
+from ml.pipeline import run_pipeline
+
 
 @pytest.fixture
 def data():
@@ -17,39 +18,26 @@ def sample(data):
 
 @pytest.fixture
 def model():
-    encoder = joblib.load("model/encoder.joblib")
-    lb = joblib.load("model/lb.joblib")
-    model = joblib.load("model/model.joblib")
-    return {"lb":lb, "encoder":encoder, "model":model}
+    return joblib.load("model/model.joblib")
 
+@pytest.fixture
+def lb():
+    return joblib.load("model/lb.joblib")
 
-def run_inference(sample, model):
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
+@pytest.fixture
+def encoder():
+    return joblib.load("model/encoder.joblib")
 
-    X, y, encoder, lb = process_data(sample, categorical_features=cat_features,
-        label="salary", training=False, encoder=model["encoder"], lb=model["lb"])
-    preds = inference(model["model"], X)
-    return (y, preds)
+def test_can_run_inference(sample, model, lb, encoder):
+    run_pipeline(sample, model, lb, encoder)
 
-def test_can_run_inference(sample, model):
-    run_inference(sample, model)
-
-def test_pred_range(sample, model):
-    y, preds = run_inference(sample, model)
+def test_pred_range(sample, model, lb, encoder):
+    y, preds = run_pipeline(sample, model, lb, encoder)
     assert min(preds) >= 0 , "min value has to be greater equal to 0"
     assert max(preds) <= 1 , "max value has to be smaller equal to 1"
 
-def test_pred_precision(sample, model):
-    y, preds = run_inference(sample, model)
+def test_pred_precision(sample, model, lb, encoder):
+    y, preds = run_pipeline(sample, model, lb, encoder)
     precision, _, _ = compute_model_metrics(y, preds)
     print(precision)
     assert precision > 0.9, "precision must be higher then 0.9"
