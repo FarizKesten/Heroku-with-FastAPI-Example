@@ -1,5 +1,7 @@
 from .data import process_data
 from .model import inference, compute_model_metrics
+from helper import read_config
+
 
 
 def run_pipeline(data, model, lb, encoder):
@@ -17,17 +19,8 @@ def run_pipeline(data, model, lb, encoder):
     (y, preds) : np.array
         True data & Predictions from the model.
     """
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
 
+    cat_features = read_config('config.yml')['data']['cat_features']
     X, y, encoder, lb = process_data(data, categorical_features=cat_features,
         label="salary", training=False, encoder=encoder, lb=lb)
     preds = inference(model, X)
@@ -47,17 +40,7 @@ def compute_model_performance_on_slices(data, model, encoder, lb):
     Returns:
         performance: performance values of the model based on each categories
     """
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
-
+    cat_features = read_config('config.yml')['data']['cat_features']
     results = ""
     for category in cat_features:
         for unique in data[category].unique():
