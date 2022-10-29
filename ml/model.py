@@ -20,15 +20,8 @@ def train_model(X_train, y_train):
     """
     parameters = \
     {
-        "n_estimators": 100,
-        "max_depth": 10,
-        "min_samples_split": 4,
-        "min_samples_leaf": 3,
-        "n_jobs": -1,
-        "max_features": 0.5,
-        "oob_score": True,
-        "random_state": 42,
-        "class_weight": "balanced"
+        "n_estimators": 20,
+        "random_state": 0,
     }
 
     model = RandomForestClassifier(**parameters)
