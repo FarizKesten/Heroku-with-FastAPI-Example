@@ -4,9 +4,11 @@
 # Add the necessary imports for the starter code.
 from sklearn.model_selection import train_test_split
 from ml.data import process_data
-from ml.model import train_model
+from ml.model import train_model, inference, compute_model_metrics
+from ml.pipeline import compute_model_performance_on_slices
 import pandas as pd
 import joblib
+
 
 # Add code to load in the data.
 #%%
@@ -44,4 +46,12 @@ joblib.dump(lb, "model/lb.joblib")
 joblib.dump(encoder, "model/encoder.joblib")
 joblib.dump(model, "model/model.joblib")
 
+# %%
+#print out the general result of the model
+precision, recall, fbeta = compute_model_metrics(y_test, inference(model, X_test))
+print(f"General: Precision: {precision} Recall {recall} FBeta {fbeta}")
+
+# print out the result based on slicing
+results = compute_model_performance_on_slices(test, model, encoder, lb)
+print(results)
 # %%
