@@ -28,16 +28,23 @@ def lb():
 def encoder():
     return joblib.load("model/encoder.joblib")
 
-def test_can_run_inference(sample, model, lb, encoder):
-    run_pipeline(sample, model, lb, encoder)
+def test_can_load_data_and_models(sample, model, lb, encoder):
+    # if all fixtures can run till here, all models & data can be found
+    assert sample is not None, "sample can't be None"
+    assert model is not None, "model can't be None"
+    assert lb is not None, "lb can't be None"
+    assert encoder is not None, "encoder can't be None"
 
-def test_pred_range(sample, model, lb, encoder):
-    y, preds = run_pipeline(sample, model, lb, encoder)
+def test_can_run_inference(sample):
+    run_pipeline(sample)
+
+def test_pred_range(sample):
+    y, preds = run_pipeline(sample)
     assert min(preds) >= 0 , "min value has to be greater equal to 0"
     assert max(preds) <= 1 , "max value has to be smaller equal to 1"
 
-def test_pred_precision(sample, model, lb, encoder):
-    y, preds = run_pipeline(sample, model, lb, encoder)
+def test_pred_precision(sample):
+    y, preds = run_pipeline(sample)
     precision, _, _ = compute_model_metrics(y, preds)
     print(precision)
     assert precision > 0.9, "precision must be higher then 0.9"

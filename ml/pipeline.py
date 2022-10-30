@@ -1,10 +1,14 @@
 from .data import process_data
 from .model import inference, compute_model_metrics
 from helper import read_config
+import joblib
 
 
 
-def run_pipeline(data, model, lb, encoder):
+def run_pipeline(data,
+                 model=joblib.load("model/model.joblib"),
+                 lb=joblib.load("model/lb.joblib"),
+                 encoder=joblib.load("model/encoder.joblib")):
     """ Run preprocessing + model inference
 
     Inputs
@@ -19,6 +23,8 @@ def run_pipeline(data, model, lb, encoder):
     (y, preds) : np.array
         True data & Predictions from the model.
     """
+    # if not model:
+    #     model = joblib.load("model/model.joblib")
 
     cat_features = read_config('config.yml')['data']['cat_features']
     X, y, encoder, lb = process_data(data, categorical_features=cat_features,
