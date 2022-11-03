@@ -68,3 +68,15 @@ def process_data(
 
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
+
+
+def get_output_class(preds, lb=None):
+    """Get the class of the prediction
+
+    Args:
+        preds (np.array): prediction values
+
+    Returns:
+        np.array: class of the prediction
+    """
+    return lb.transform(y.values).ravel()
