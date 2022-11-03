@@ -70,7 +70,7 @@ def process_data(
     return X, y, encoder, lb
 
 
-def get_output_class(preds, lb=None):
+def get_output_class(preds, lb):
     """Get the class of the prediction
 
     Args:
@@ -79,4 +79,4 @@ def get_output_class(preds, lb=None):
     Returns:
         np.array: class of the prediction
     """
-    return lb.transform(y.values).ravel()
+    return lb.transform(preds.values).ravel()
