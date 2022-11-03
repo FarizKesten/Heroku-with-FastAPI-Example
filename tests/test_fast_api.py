@@ -9,9 +9,9 @@ def client():
 
 
 def test_get(client):
-    r = client.get("/")
+    request = client.get("/")
     assert request.status_code == 200
-    assert r.json() == {"greeting": "Welcome!!"}
+    assert request.json() == {"greeting": "Welcome!!"}
 
 
 def test_post_high(client):
