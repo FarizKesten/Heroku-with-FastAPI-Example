@@ -1,6 +1,6 @@
+#%%
 # Script to train machine learning model.
 
-#%%
 # Add the necessary imports for the starter code.
 from sklearn.model_selection import train_test_split
 from ml.data import process_data
@@ -50,4 +50,12 @@ print(f"General: Precision: {precision} Recall {recall} FBeta {fbeta}")
 # print out the result based on slicing
 results = compute_model_performance_on_slices(test, model, encoder, lb)
 print(results)
+
+# save results to slice_output.txt
+with open(model_path / "slice_output.txt", "w") as f:
+    f.write(str(results))
+
+
+
+
 # %%
