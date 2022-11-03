@@ -47,5 +47,5 @@ def test_post_low(client):
                                      'hours-per-week': 60,
                                      'native-country': 'United-States'
                                      })
-    # assert request.status_code == 200
+    assert request.status_code == 200
     assert request.json() == {"prediction": "<=50K"}
