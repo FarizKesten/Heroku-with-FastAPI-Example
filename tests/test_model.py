@@ -5,11 +5,15 @@ import joblib
 from sklearn.model_selection import train_test_split
 from ml.model import compute_model_metrics
 from ml.pipeline import run_pipeline
+import pathlib
 
+
+main_path = pathlib.Path(__file__).parent.parent.resolve()
+model_path = main_path / "ml" / "model"
 
 @pytest.fixture
 def data():
-    return pd.read_csv("data/census_clean.csv", skipinitialspace=True)
+    return pd.read_csv(main_path / "data" / "census_clean.csv", skipinitialspace=True, index_col=0)
 
 @pytest.fixture
 def sample(data):
@@ -18,15 +22,15 @@ def sample(data):
 
 @pytest.fixture
 def model():
-    return joblib.load("model/model.joblib")
+    return joblib.load(model_path / "model.joblib")
 
 @pytest.fixture
 def lb():
-    return joblib.load("model/lb.joblib")
+    return joblib.load(model_path / "lb.joblib")
 
 @pytest.fixture
 def encoder():
-    return joblib.load("model/encoder.joblib")
+    return joblib.load(model_path / "encoder.joblib")
 
 def test_can_load_data_and_models(sample, model, lb, encoder):
     # if all fixtures can run till here, all models & data can be found
