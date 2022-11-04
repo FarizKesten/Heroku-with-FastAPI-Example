@@ -35,12 +35,13 @@ click-plugins==1.1.1
 click-repl==0.2.0
 colorama==0.4.6
 commonmark==0.9.1
-conda==22.9.0
-conda-package-handling==1.9.0
+# conda==22.9.0
+# conda-package-handling==1.9.0
 configobj==5.0.6
 cryptography==38.0.2
 cycler==0.11.0
-dataclasses==0.8
+# dataclasses==0.8
+dataclasses==0.6
 debugpy==1.6.3
 decorator==5.1.1
 defusedxml==0.7.1
@@ -49,11 +50,14 @@ diskcache==5.4.0
 distro==1.6.0
 dpath==2.0.6
 dulwich==0.20.46
-dvc==0.0.0
-dvc-data==0.22.0
+dvc==2.33.2
+# dvc==0.0.0
+# dvc-data==0.22.0
+dvc-data==0.25.2
 dvc-gdrive==2.19.0
 dvc-http==2.27.2
-dvc-objects==0.11.0
+# dvc-objects==0.11.0
+dvc-objects==0.12.2
 dvc-render==0.0.12
 dvc-s3==2.20.1
 dvc-task==0.1.4
@@ -112,12 +116,13 @@ jupyterlab_server==2.16.1
 jupyterlab-widgets==3.0.3
 kiwisolver==1.4.4
 kombu==5.2.4
-libmambapy==0.27.0
-mamba==0.27.0
+# libmambapy==0.27.0
+# mamba==0.27.0
 MarkupSafe==2.1.1
 matplotlib==3.5.3
 matplotlib-inline==0.1.6
 missingno==0.4.2
+# mistune==2.0.40.0.0
 mistune==2.0.4
 multidict==6.0.2
 multimethod==1.4
@@ -158,7 +163,8 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
-pycosat==0.6.4
+# pycosat==0.6.4
+pycosat==0.6.3
 pycparser==2.21
 pydantic==1.10.2
 pydot==1.4.2
@@ -186,12 +192,13 @@ rich==12.6.0
 rsa==4.9
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.7
-ruamel-yaml-conda==0.15.80
+# ruamel-yaml-conda==0.15.80
 s3fs==2022.10.0
 s3transfer==0.6.0
 scikit-learn==1.1.2
 scipy==1.9.3
-scmrepo==0.1.2
+# scmrepo==0.1.2
+scmrepo==0.1.3
 seaborn==0.12.1
 Send2Trash==1.8.0
 setuptools==65.5.0
