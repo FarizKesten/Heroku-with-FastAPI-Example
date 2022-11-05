@@ -46,6 +46,21 @@ class InputData(BaseModel):
     # allow conversion to Field Name for some variables with hyphens
     class Config:
         allow_population_by_field_name = True
+        schema_extra = {
+            "example": {
+                'age': 40,
+                'workclass': 'Private',
+                'fnlgt': 140000,
+                'education': 'Doctorate',
+                'marital-status': 'Never-married',
+                'occupation': 'Prof-specialty',
+                'relationship': 'Not-in-family',
+                'race': 'White',
+                'sex': 'Male',
+                'hours-per-week': 60,
+                'native-country': 'United-States'
+            }
+        }
 
 
 @app.get("/")
