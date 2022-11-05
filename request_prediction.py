@@ -1,6 +1,7 @@
 import requests
+import json
 
-json = {
+input = {
             'age': 40,
             'workclass': 'Private',
             'fnlgt': 140000,
@@ -14,9 +15,10 @@ json = {
             'native-country': 'United-States'
         }
 
-r = requests.post('https://deploy-ml-model-on-heroku.herokuapp.com/', json=json)
+r = requests.post('https://deploy-ml-model-on-heroku.herokuapp.com/', json=input)
 
 assert r.status_code == 200
 
-print("Status code: %s" % r.status_code)
-print("Prediction: %s" % r.json())
+print("Status code:", r.status_code)
+print("input:", json.dumps(input, indent=2))
+print("Prediction:",  r.json())
